@@ -1,0 +1,10 @@
+#cardSearch {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; 
+  align-items: center;
+}
+button {
+  padding: 10px;
+  margin: 20px;
+}

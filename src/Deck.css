@@ -1,0 +1,20 @@
+.viewOfDeck {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(100px, 300px));
+  grid-gap: 10px;
+  grid-auto-columns: 100px;
+}
+form {
+  margin: 10px;
+}
+label {
+  font-size: 18px; 
+  margin: 5px;
+}
+h1 {
+  text-decoration: underline;
+  margin: 0;
+}
+#deck {
+  text-align: center;
+}

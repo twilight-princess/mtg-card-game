@@ -1,0 +1,15 @@
+p {
+    text-align: center;
+    width: 75%;
+    margin: auto;
+}
+.wrapper {
+    text-align: center;
+    grid-template: 
+    "x" "n" "n" "x"
+    "x" "m" "m" "x";
+
+}
+#card {
+    text-align: center;
+}
