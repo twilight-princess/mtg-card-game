@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCard, addToDeck } from './redux'
-import './SearchCards.css'
+import { getCard, addToDeck } from '../redux'
+import '../styles/SearchCards.css'
 import Card from './Card'
 import { withRouter } from 'react-router-dom'
 

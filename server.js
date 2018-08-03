@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 const PORT = 8080
-const MONGODB_URI = 'mongodb://localhost:27017/decks'
+const MONGODB_URI = 'mongodb://localhost:27017/'
 
 const app = express()
 

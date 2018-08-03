@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import axios from "axios";
+import { createStore, applyMiddleware } from "redux"
+import thunk from "redux-thunk"
+import axios from "axios"
 
 const initialState = {
     deck: [],
@@ -34,7 +34,7 @@ const reducer = (prevState = initialState, action) => {
         case "TOGGLE_LOGIN":
             return {
                 ...prevState,
-                loggedIn: false,
+                loggedIn: action.user,
                 loading: false 
             }
         case "CREATE_USER":
@@ -102,8 +102,10 @@ export const createUser = (username) => {
 
 export const toggleLogin = (user) => {
     return dispatch => {
-        
-        type: "TOGGLE_LOGIN"
+        store.dispatch({
+            type: "TOGGLE_LOGIN"
+        })
+        axios.get(server)
     }
 }
 

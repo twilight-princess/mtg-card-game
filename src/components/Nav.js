@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; 
 import { Link } from 'react-router-dom'
 import ResponsiveMenu from 'react-responsive-navbar';
-import './Nav.css'
+import '../styles/Nav.css'
 
 class Nav extends Component {
   render() {

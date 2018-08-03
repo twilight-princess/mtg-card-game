@@ -8,11 +8,11 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux";
 
-import Nav from './Nav'
-import App from "./App";
-import Card from "./Card"
-import SearchCards from "./SearchCards"
-import Deck from "./Deck"
+import Nav from './components/Nav'
+import App from './components/App'
+import Card from './components/Card'
+import SearchCards from './components/SearchCards'
+import Deck from './components/Deck'
 
 render(
 
@@ -20,7 +20,6 @@ render(
       <div> 
         <Nav />
       <Provider store={store}>      
-
         <Switch>
           <Route path="/" exact component={App} />
           <Route path="/card" component={SearchCards} />
