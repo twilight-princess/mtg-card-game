@@ -4,11 +4,12 @@ const { Schema } = mongoose
 const userSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     decks: Array
 })
 
-const userModel = mongoose.model('User')
+const userModel = mongoose.model('User', userSchema)
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = userModel

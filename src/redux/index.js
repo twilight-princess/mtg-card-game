@@ -31,16 +31,24 @@ const reducer = (prevState = initialState, action) => {
                 deck: [...prevState.deck, prevState.foundCard],
                 loading: false
             }
-        case "TOGGLE_LOGIN":
+        case "LOGIN":
             return {
                 ...prevState,
-                loggedIn: action.user,
+                loggedIn: true,
+                currentUser: prevState.user,
+                loading: false 
+            }
+        case "LOGOUT":
+            return {
+                ...prevState,
+                loggedIn: false,
+                currentUser: null,
                 loading: false 
             }
         case "CREATE_USER":
             return {
                 ...prevState,
-                username: "",
+                username: action.user,
                 decks: [],
                 loading: false
             }
@@ -94,18 +102,32 @@ export const addToDeck = () => {
 
 export const createUser = (username) => {
     return dispatch => {
-        store.dispatch({
-            type: "CREATE_USER"
-        })
+        axios.post('http://localhost:8080/user', {username: username})
+            .then(response => {
+                if (response) {
+                    store.dispatch({
+                        type: "LOGIN",
+                        user: {
+                            username: response.data.user,
+                            decks: response.data.user.decks || []
+                        }
+                    })
+                }
+            })
     }
 }
 
 export const toggleLogin = (user) => {
     return dispatch => {
+        if (user) {
+            type: "LOGOUT"
+        } else {
+            type: "LOGIN"
+        }
         store.dispatch({
             type: "TOGGLE_LOGIN"
         })
-        axios.get(server)
+        axios.post('localhost:8080/user')
     }
 }
 

@@ -4,6 +4,7 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.18.0",
+    "cors": "^2.8.4",
     "mongoose": "^5.2.6",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

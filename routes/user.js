@@ -11,10 +11,17 @@ userRouter.route('/')
     })
     .post((req,res) => {
         console.log(req.body)
-        let user = new User(req.body)
-        user.save((err) => {
+        User.find({username: req.body.username }).exec((err, user) => {
             if (err) res.send(err)
-            res.send({status: true})
+            if (user.length > 0) {
+                res.send({message: 'That username already exists. Please choose a unique usernme.'})
+            } else {
+                let newUser = new User(req.body)
+                newUser.save((err) => {
+                    if (err) res.send(err)
+                    res.send({user: newUser})
+                })    
+            }        
         })
     })
 userRouter.route('/:id')

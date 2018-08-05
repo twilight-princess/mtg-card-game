@@ -14,26 +14,25 @@ class User extends Component {
     this.setState({
       [name]: value
     })
-    console.log(this.state)
   }
   handleLogin(e) {
     const { username } = e.target
     this.setState(prevState => {
       toggleLogin(prevState)
     })
-    console.log(username)
+    console.log(this.state)
   }
   handleCreateUsername(e) {
-    const { username } = e.target
-    this.setState(createUser(username))
-    console.log(username)
+    this.setState(createUser(this.state.username))
   }
   render() {
     return (
       <div className="user">
-        {this.props.render({
-          inputs: this.state.inputs
-        })}
+        <form>
+          <input onChange={this.handleChange} value={this.username} name="username" type="text" />
+          <button onClick={this.handleLogin} value={this.username}>Login</button>
+          <button onClick={this.handleCreateUsername}>Create Username</button>
+        </form>
       </div>
     )
   }
