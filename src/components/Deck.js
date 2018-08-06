@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addToDeck } from '../redux'
+import { addToDeck, saveDeckToDB } from '../redux'
 import '../styles/Deck.css'
 import { Link, withRouter } from 'react-router-dom'
 import Card from './Card'
+import SearchCards from './SearchCards'
 
 const mapStateToProps = state => {
-    return { user: state.user, loggedIn: state.loggedIn, deck: state.deck }
+    return { currentUser: state.currentUser, loggedIn: state.loggedIn, foundCard: state.foundCard }
 }
 
 const landCount = (count, curr) => {
@@ -14,24 +15,53 @@ const landCount = (count, curr) => {
         count++
     return count
 }
+const creatureCount = (count, curr) => {
+    if (curr.types.includes("Creature"))
+        count++
+    return count
+}
 
 class Deck extends Component {
 
     render() {
+        console.log("Props: ", this.props)
+        console.log("State: ", this.props.location.state)
+        const deckId = this.props.location.state.deck._id
+        const deck = this.props.currentUser.decks.filter(deck => deck._id === deckId)[0]
         return (
             <div className="deck">
             {this.props.loggedIn ?
-                <div><h1>{this.props.deck.name}</h1>
-                    <span><h3>Click <Link to='/card'>Here</Link> to add cards!</h3></span>
-                    <span>{this.props.deck.length} Cards</span> - <span>{this.props.deck.reduce(landCount, 0)} Lands</span>
-                    <br />
-                    <div className="viewOfDeck">
-                        {this.props.deck.map((card, i) => {
-                            return <Card key={card.name + i} card={card} />
-                        })}
+                <div className="searchWithDeck">
+                    <div className="searchDetails">
+                        <SearchCards deckId={deck._id} />
+                    </div>
+                    <div className="cardDetails">
+                        <div className="cardGrid">
+                            <div id="leftInfo">
+                            {console.log('finded cards: ', this.props.foundCard)}
+                                
+                            </div>
+                            <Card card={this.props.foundCard} />
+                            <div id="rightInfo"></div>
+                        </div>
+                    </div>
+                    <div className="deckDetails">
+                        <h1>{deck.name}</h1>
+                        <span>{deck.cards.length} Cards</span> -
+                        <span>{deck.cards.reduce(landCount, 0)} Lands</span> -
+                        <span>{deck.cards.reduce(creatureCount, 0)} Creatures</span>
+                        <br />
+                        <br />
+                        <span><button onClick={saveDeckToDB()}>Save</button></span>
+
+                        <div className="viewOfDeck">
+                            {deck.cards.map((card, i) => {
+                                return <Card key={card.name + i} card={card} />
+                            })}
+                        </div>
                     </div>
                 </div>
-                : <p>Please <Link to='/'>login</Link> to view a deck!</p>
+                : <p className="loginNote">Please <Link to='/'>login</Link> to view a deck!</p>
             }
             </div>
         )

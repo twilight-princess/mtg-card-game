@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getCard, addToDeck } from '../redux'
-import '../styles/SearchCards.css'
+// import '../styles/SearchCards.css'
 import Card from './Card'
 import User from './User'
 import { Link, withRouter } from 'react-router-dom'
@@ -58,12 +58,13 @@ class SearchCards extends Component {
                         <option value="">Any</option>
                         {this.types.map((type, i) => <option key={type + i} value={type}>{type}</option>)}
                     </select>
+                    <br />
                     <label>Name:</label>
                     <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
                 </form>
                 <button id="find-card-button" onClick={getCard({name: "name", value: this.state.name}, {name:"colors", value:this.state.colors}, {name:"type", value: this.state.cardType})}>Generate Card</button>
-                <Card card={this.props.foundCard} />
-                {this.props.loggedIn ? <button id="deck-button" onClick={addToDeck()}>I want it!</button> : (this.state.showLogin) ? <User /> : <h4>Please <a onClick={this.showLogin}>login</a> to create decks and play!</h4>}
+                
+                {this.props.loggedIn ? <button id="deck-button" onClick={addToDeck(this.props.foundCard, this.props.deckId)}>I want it!</button> : (this.state.showLogin) ? <User /> : <h4>Please <a onClick={this.showLogin}>login</a> to create decks and play!</h4>}
             </div>
         )
     }

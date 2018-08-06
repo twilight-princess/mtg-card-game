@@ -16,9 +16,9 @@ class Nav extends Component {
     return (
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/card">Search Cards</Link></li>
+            {/* <li><Link to="/card">Search Cards</Link></li> */}
             <li></li>
-            <li><Link to="/deck">{this.props.currentUser.username}</Link></li>
+            <li><Link to="/decks">{this.props.currentUser.username}</Link></li>
             <li>{this.props.loggedIn ? <a onClick={logout()}>Logout</a> : <Link to="/">Login</Link>}</li>
           </ul>
     )

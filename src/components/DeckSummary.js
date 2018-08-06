@@ -21,7 +21,7 @@ class DeckSummary extends Component {
             <div className="deckSummary">
             {this.props.loggedIn ?
                 <div><h2>{this.props.deck.name}</h2>
-                    <span><h3>Click <Link to='/deck' props={this.props.deck}>Here</Link> to add cards!</h3></span>
+                    <span><h3>Click <Link to={{pathname: '/deck', state: {deck: this.props.deck}}}>Here</Link> to add cards!</h3></span>
                     <span>{this.props.deck.cards.length} Cards</span> - <span>{this.props.deck.cards.reduce(landCount, 0)} Lands</span>
 
                 </div>

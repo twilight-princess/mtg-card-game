@@ -35,7 +35,6 @@ class Decks extends Component {
             return (
                 <div className="decks">
                     <h4>Your Saved Decks</h4>
-                    <span>Click on a deck to view or edit it or <Link to="/card">here</Link> to check out cards.</span>
                     {this.props.currentUser.decks.map((deck, i) => {
                         return <DeckSummary key={deck.name + i} deck={deck} />
                     })}
@@ -55,7 +54,7 @@ class Decks extends Component {
                 </div>
             )
         } else {
-            return <h3>Please <Link to='/'>login</Link> to view or build decks!</h3>
+            return <h3>Please <Link to='/'>login</Link> to view decks!</h3>
         }
     }
 }
