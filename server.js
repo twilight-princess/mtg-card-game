@@ -8,8 +8,8 @@ const path = require('path')
 const PORT = process.env.PORT || 8080
 const MONGODB_URI = 'mongodb://localhost:27017/MTG'
 
-const userRouter = require('./routes/user.js')
-const deckRouter = require('./routes/deck.js')
+const userRouter = require('./routes/api/user.js')
+const deckRouter = require('./routes/api/deck.js')
 const bodyParser = require('body-parser')
 const app = express()
 
