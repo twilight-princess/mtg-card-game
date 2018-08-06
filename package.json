@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "cors": "^2.8.4",
     "dotenv": "^6.0.0",
+    "heroku-client": "^3.0.6",
     "mongoose": "^5.2.6",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -24,10 +25,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "cd client && npm install --only-dev && npm install && npm run build"
+    "heroku-postbuild": "cd public && npm install --only-dev && npm install && npm run build"
   },
   "engines": {
-    "node: "8.10.0"
+    "node": "8.10.0"
   },
   "keywords": [],
   "author": "",
