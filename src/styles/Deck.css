@@ -1,24 +1,74 @@
 .viewOfDeck {
   display: grid;
-  grid-template-columns: repeat(4, minmax(100px, 300px));
+  grid-template-columns: repeat(4, minmax(100px, auto));
   grid-gap: 10px;
   grid-auto-columns: 100px;
   text-align: center;
 }
-form {
-  margin: 10px;
+.searchWithDeck {
+  display: grid;
+  grid-template:
+  "s c c"
+  "d d d";
 }
-label {
-  font-size: 18px; 
+.searchDetails {
+  grid-area: s;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  color: #48435C;
+  border: 1px solid #48435C; 
+}
+.searchDetails > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #48435C; 
+  width: 50%;
+}
+.cardDetails {
+  grid-area: c;
+  margin: 5px;
+  padding: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #48435C;
+  border-radius: 5px;
+  border: 1px solid #48435C; 
+}
+.deckDetails {
+  text-align: center;
+  grid-area: d;
+  border: 1px solid #;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  color: #48435C;
+  border: 1px solid #48435C; 
+}
+.decks, h3, h1 {
+  text-align: center;
+  width: 100%;
   margin: 5px;
 }
-h1 {
-  margin: 0;
+span {
+  padding: 5px;
 }
-#deck {
+.loginNote {
+  text-align:center;
+  font-size: 30px;
+}
+.createDeck {
   text-align: center;
 }
-body {
-  margin: none;
-  text-align: center;
+leftInfo {
+
+}
+#rightInfo {
+
+}
+form > * {
+  margin: 5px;
 }

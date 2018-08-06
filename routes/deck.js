@@ -16,7 +16,7 @@ deckRouter.route('/')
             user.decks.push(req.body.deck)
             user.save(err => {
                 if (err) return res.send(err)
-                res.send('Success!')
+                res.send(user)
             })
         })
     })

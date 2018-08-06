@@ -63,7 +63,7 @@ class SearchCards extends Component {
                     <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
                 </form>
                 <button id="find-card-button" onClick={getCard({name: "name", value: this.state.name}, {name:"colors", value:this.state.colors}, {name:"type", value: this.state.cardType})}>Generate Card</button>
-                
+                <br />
                 {this.props.loggedIn ? <button id="deck-button" onClick={addToDeck(this.props.foundCard, this.props.deckId)}>I want it!</button> : (this.state.showLogin) ? <User /> : <h4>Please <a onClick={this.showLogin}>login</a> to create decks and play!</h4>}
             </div>
         )

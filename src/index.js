@@ -14,6 +14,8 @@ import SearchCards from './components/SearchCards'
 import Decks from './components/Decks'
 import Deck from './components/Deck'
 
+import './styles/index.css'
+
 render(
     <BrowserRouter>
       <Provider store={store}>      
@@ -21,7 +23,7 @@ render(
           <Nav />
           <Switch>
             <Route path="/" exact component={App} />
-            <Route path="/card" component={SearchCards} />
+            {/* <Route path="/card" component={SearchCards} /> */}
             <Route path="/decks" render={Decks} />
             <Route path="/deck" component={Deck} />
           </Switch>

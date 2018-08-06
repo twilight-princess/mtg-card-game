@@ -26,8 +26,11 @@ class Deck extends Component {
     render() {
         console.log("Props: ", this.props)
         console.log("State: ", this.props.location.state)
-        const deckId = this.props.location.state.deck._id
-        const deck = this.props.currentUser.decks.filter(deck => deck._id === deckId)[0]
+        let deck = {}
+        if (this.props.loggedIn === true) {
+            const deckId = this.props.location.state.deck._id
+            deck = this.props.currentUser.decks.filter(deck => deck._id === deckId)[0]
+        }
         return (
             <div className="deck">
             {this.props.loggedIn ?
@@ -42,7 +45,7 @@ class Deck extends Component {
                                 
                             </div>
                             <Card card={this.props.foundCard} />
-                            <div id="rightInfo"></div>
+                            <div id="rightInfo">{this.props.foundCard.text}</div>
                         </div>
                     </div>
                     <div className="deckDetails">

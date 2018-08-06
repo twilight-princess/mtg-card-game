@@ -42,11 +42,12 @@ class Decks extends Component {
             )
         } else if (this.props.loggedIn) {
             return (
-                <div>
+                <div className="createDeck">
                     <h3>You don't have any decks yet. Build one here to begin.</h3>
                     <form>
                         Enter a name for your new deck: 
                         <input placeholder="Required" type="text" name="deckName" value={this.deckName} onChange={this.handleChange} />
+                        <br />
                         Enter a description:                     
                         <input placeholder="Optional" type="text" name="deckDescription" value={this.deckDescription} onChange={this.handleChange} />
                         <button onClick={this.handleCreateDeck}>Create</button>
@@ -54,7 +55,7 @@ class Decks extends Component {
                 </div>
             )
         } else {
-            return <h3>Please <Link to='/'>login</Link> to view decks!</h3>
+            return <h3><b>Please <Link to='/'>login</Link> to view decks!</b></h3>
         }
     }
 }

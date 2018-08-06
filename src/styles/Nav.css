@@ -2,11 +2,13 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-color: #9792E3;
+    border-radius: 5px;
     display: grid;
     height: 50px;
+    margin: 5px;
     box-sizing: border-box;
-    grid-template-columns: 200px 200px 1fr 200px 200px;
+    grid-template-columns: 100px 1fr minmax(100px, auto) 100px;
 }
 li {
     font-size: 25px;
@@ -16,15 +18,15 @@ li {
 li a {
     font-size: 20px;
     text-decoration: none;
-    color: white;
+    color: #5A5766;
     -webkit-text-stroke-width: .5px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: #48435C;
     cursor: pointer;
     line-height: 50px;
 }
 li a:hover {
     text-decoration: none;
-    color: black;
+    color: #9792E3;
     -webkit-text-stroke-width: .5px;
-    -webkit-text-stroke-color: white;
+    -webkit-text-stroke-color: #5A5766;
 }
