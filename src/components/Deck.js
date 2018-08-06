@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addToDeck } from '../redux'
 import '../styles/Deck.css'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import Card from './Card'
 
 const mapStateToProps = state => {
-    return { deck: state.deck }
+    return { user: state.user, loggedIn: state.loggedIn, deck: state.deck }
 }
 
 const landCount = (count, curr) => {
@@ -18,17 +18,21 @@ const landCount = (count, curr) => {
 class Deck extends Component {
 
     render() {
-        // const {card} = this.props.deck
         return (
-            <div id="deck">
-                <h1>Deck</h1>
-                <span>{this.props.deck.length} Cards</span> - <span>{this.props.deck.reduce(landCount, 0)} Lands</span>
-                <br />
-                <div className="viewOfDeck">
-                    {this.props.deck.map((card, i) => {
-                        return <Card key={card.name + i} card={card} />
-                    })}
+            <div className="deck">
+            {this.props.loggedIn ?
+                <div><h1>{this.props.deck.name}</h1>
+                    <span><h3>Click <Link to='/card'>Here</Link> to add cards!</h3></span>
+                    <span>{this.props.deck.length} Cards</span> - <span>{this.props.deck.reduce(landCount, 0)} Lands</span>
+                    <br />
+                    <div className="viewOfDeck">
+                        {this.props.deck.map((card, i) => {
+                            return <Card key={card.name + i} card={card} />
+                        })}
+                    </div>
                 </div>
+                : <p>Please <Link to='/'>login</Link> to view a deck!</p>
+            }
             </div>
         )
     }

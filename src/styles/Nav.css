@@ -3,28 +3,28 @@ ul {
     margin: 0;
     padding: 0;
     background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
+    display: grid;
     height: 50px;
     box-sizing: border-box;
+    grid-template-columns: 200px 200px 1fr 200px 200px;
+}
+li {
+    font-size: 25px;
+    padding: 20px 0 0 0;
+    margin: auto;
 }
 li a {
-    display: flex;
-    flex-grow: 1;
     font-size: 20px;
+    text-decoration: none;
     color: white;
-    text-decoration: unset;
-    /* border-right: 1px solid white; */
-    position: relative;
+    -webkit-text-stroke-width: .5px;
+    -webkit-text-stroke-color: black;
+    cursor: pointer;
     line-height: 50px;
 }
 li a:hover {
-    color: magenta;
-    font-size: 30px;
-    /* background-color: white; */
-}
-li:last-child {
-    border-right: none;
+    text-decoration: none;
+    color: black;
+    -webkit-text-stroke-width: .5px;
+    -webkit-text-stroke-color: white;
 }

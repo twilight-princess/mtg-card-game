@@ -9,7 +9,12 @@ const initialState = {
         colors: [],
 
     },
-    loading: false
+    loading: false,
+    currentUser: {
+        username: '', 
+        decks: []
+    },
+    loggedIn: false
 }
 
 const reducer = (prevState = initialState, action) => {
@@ -25,6 +30,11 @@ const reducer = (prevState = initialState, action) => {
                 foundCard: action.card,
                 loading: false
             }
+        case "CREATE_DECK":
+            return {
+                ...prevState,
+                deck: action.deck
+            }
         case "ADD_TO_DECK":
             return {
                 ...prevState,
@@ -35,14 +45,14 @@ const reducer = (prevState = initialState, action) => {
             return {
                 ...prevState,
                 loggedIn: true,
-                currentUser: prevState.user,
+                currentUser: action.user,
                 loading: false 
             }
         case "LOGOUT":
             return {
                 ...prevState,
                 loggedIn: false,
-                currentUser: null,
+                currentUser: {username: ''},
                 loading: false 
             }
         case "CREATE_USER":
@@ -107,27 +117,50 @@ export const createUser = (username) => {
                 if (response) {
                     store.dispatch({
                         type: "LOGIN",
-                        user: {
-                            username: response.data.user,
-                            decks: response.data.user.decks || []
-                        }
+                        user: response.data.user
                     })
                 }
             })
     }
 }
 
-export const toggleLogin = (user) => {
+export const login = (user) => {
     return dispatch => {
-        if (user) {
-            type: "LOGOUT"
-        } else {
-            type: "LOGIN"
-        }
-        store.dispatch({
-            type: "TOGGLE_LOGIN"
+        axios.post('http://localhost:8080/user/login', {username: user})
+            .then(response => {
+                if (response) {
+                    store.dispatch({
+                        type: "LOGIN",
+                        user: response.data
+                    })
+                } else {
+                    return user = {}
+                }
+                console.log(response.data)
         })
-        axios.post('localhost:8080/user')
+    }
+}
+
+export const logout = () => {
+    
+    return dispatch => {
+        store.dispatch({
+            type: "LOGOUT"
+        })
+    }
+}
+
+export const createDeck = (name, details) => {
+    return dispatch => {
+        axios.post('http://localhost:8080/deck', {userId: store.getState().currentUser._id, deck: {name: name, details: details}})
+            .then(response => {
+                if (response) {
+                    store.dispatch({
+                        type: "CREATE_DECK",
+                        deck: response.data.deck
+                    })
+                }
+            })
     }
 }
 

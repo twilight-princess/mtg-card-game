@@ -10,23 +10,22 @@ import store from "./redux";
 
 import Nav from './components/Nav'
 import App from './components/App'
-import Card from './components/Card'
 import SearchCards from './components/SearchCards'
+import Decks from './components/Decks'
 import Deck from './components/Deck'
 
 render(
-
     <BrowserRouter>
-      <div> 
-        <Nav />
       <Provider store={store}>      
-        <Switch>
-          <Route path="/" exact component={App} />
-          <Route path="/card" component={SearchCards} />
-          <Route path="/deck" component={Deck} />
-        </Switch>
+        <div> 
+          <Nav />
+          <Switch>
+            <Route path="/" exact component={App} />
+            <Route path="/card" component={SearchCards} />
+            <Route path="/decks" render={Decks} />
+            <Route path="/deck" component={Deck} />
+          </Switch>
+        </div>
       </Provider>
-      </div>
     </BrowserRouter>
-
   , document.getElementById("root"));

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const { Schema } = mongoose
+const deckSchema = require('./deck.js')
 
 const userSchema = new Schema({
     username: {
@@ -7,7 +8,7 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    decks: Array
+    decks: [deckSchema]
 })
 
 const userModel = mongoose.model('User', userSchema)

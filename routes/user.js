@@ -24,6 +24,13 @@ userRouter.route('/')
             }        
         })
     })
+userRouter.route('/login')
+    .post((req, res) => {
+        User.findOne({username: req.body.username}, (err, user) => {
+            if (err) return res.send(err)
+            res.send(user)
+        })
+    })
 userRouter.route('/:id')
     .get((req, res) => {
         User.findOne({_id: req.params.id}, (err, user) => {

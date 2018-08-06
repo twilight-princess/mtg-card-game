@@ -1,7 +1,7 @@
 const express = require('express')
 
 const deckRouter = express.Router()
-const Deck = require('../models/deck.js')
+const User = require('../models/user.js')
 
 deckRouter.route('/')
     .get((req, res) => {
@@ -11,10 +11,13 @@ deckRouter.route('/')
     })
     .post((req,res) => {
         console.log(req.body)
-        let deck = new Deck(req.body)
-        deck.save((err) => {
-            if (err) res.send(err)
-            res.send({status: true})
+        User.findOne({_id: req.body.userId}, (err, user) => {
+            if (err) return res.send(err)
+            user.decks.push(req.body.deck)
+            user.save(err => {
+                if (err) return res.send(err)
+                res.send('Success!')
+            })
         })
     })
 deckRouter.route('/:id')

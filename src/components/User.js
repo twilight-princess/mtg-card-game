@@ -1,5 +1,12 @@
-import React, { Component } from 'react';
-import { toggleLogin, createUser } from '../redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { login, createUser } from '../redux'
+import { Redirect, withRouter } from 'react-router-dom'
+import SearchCards from './SearchCards.js'
+
+const mapStateToProps = (state) => {
+  return { user: state.user, loggedIn: state.loggedIn }
+}
 
 class User extends Component {
   constructor(props) {
@@ -16,26 +23,37 @@ class User extends Component {
     })
   }
   handleLogin(e) {
-    const { username } = e.target
-    this.setState(prevState => {
-      toggleLogin(prevState)
-    })
-    console.log(this.state)
+    e.preventDefault()
+    this.setState(login(this.state.username))
   }
   handleCreateUsername(e) {
-    this.setState(createUser(this.state.username))
+    console.log(`Created user: ${this.state.username}`)
+    e.preventDefault()
+    if(this.state.username == /\W?/) {
+      return <p>Please only use letters, numbers, and underscores. No spaces or special characters. :)</p>
+    } else {
+      this.setState(
+        createUser(this.state.username)
+      )
+    }
   }
   render() {
+    if (this.props.loggedIn === true) {
+      return <Redirect to="/decks" />
+    } 
     return (
       <div className="user">
+        {!this.props.loggedIn ?
         <form>
           <input onChange={this.handleChange} value={this.username} name="username" type="text" />
-          <button onClick={this.handleLogin} value={this.username}>Login</button>
+          <button onClick={this.handleLogin}>Login</button>
           <button onClick={this.handleCreateUsername}>Create Username</button>
-        </form>
+        </form> 
+        : <button onClick={this.handleLogout}>Logout</button>
+        }
       </div>
     )
   }
 }
 
-export default User
+export default withRouter(connect(mapStateToProps, {createUser: createUser})(User))

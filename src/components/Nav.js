@@ -1,27 +1,36 @@
-import React, { Component } from 'react'; 
-import { Link } from 'react-router-dom'
-import ResponsiveMenu from 'react-responsive-navbar';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
+import { logout } from '../redux'
 import '../styles/Nav.css'
 
 class Nav extends Component {
+  state = { loading: true, loggedIn: false, currentUser: ''}
+
+  async componentDidMount() {
+    this.setState = {loading: false, currentUser: this.props.currentUser, loggedIn: this.props.loggedIn}
+  }
+
   render() {
+    // const displayName = this.props.currentUser.username.replace(/\b/).toUpperCase() + this.props.currentUser.username.replace(/\B/).toLowerCase()
     return (
-      <ResponsiveMenu
-        menuOpenButton={<div />}
-        menuCloseButton={<div />}
-        changeMenuOn="500px"
-        largeMenuClassName="large-menu-classname"
-        smallMenuClassName="small-menu-classname"
-        menu={
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/card">Search Cards</Link></li>
-            <li><Link to="/">Login</Link></li>
+            <li></li>
+            <li><Link to="/deck">{this.props.currentUser.username}</Link></li>
+            <li>{this.props.loggedIn ? <a onClick={logout()}>Logout</a> : <Link to="/">Login</Link>}</li>
           </ul>
-        }
-      />
-    );
+    )
   }
 }
 
-export default Nav
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => {
+      dispatch(logout)
+    }
+  }
+}
+
+export default withRouter(connect(prevState => prevState, mapDispatchToProps)(Nav))
