@@ -10,7 +10,7 @@ import store from "./redux";
 
 import Nav from './components/Nav'
 import App from './components/App'
-import SearchCards from './components/SearchCards'
+// import SearchCards from './components/SearchCards'
 import Decks from './components/Decks'
 import Deck from './components/Deck'
 

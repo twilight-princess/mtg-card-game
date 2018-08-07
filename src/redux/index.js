@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import axios from "axios"
+const baseUrl = process.env.BASE_URL || 'http://localhost:8080'
 
 const initialState = {
     deck: [],
@@ -132,7 +133,7 @@ export const addToDeck = (card, deckId) => {
 
 export const createUser = (username) => {
     return dispatch => {
-        axios.post('http://localhost:8080/user', {username: username})
+        axios.post('/user', {username: username})
             .then(response => {
                 if (response) {
                     store.dispatch({
@@ -146,7 +147,7 @@ export const createUser = (username) => {
 
 export const login = (user) => {
     return dispatch => {
-        axios.post('http://localhost:8080/user/login', {username: user})
+        axios.post('/user/login', {username: user})
             .then(response => {
                 if (response) {
                     store.dispatch({
@@ -156,7 +157,7 @@ export const login = (user) => {
                 } else {
                     return user = {}
                 }
-                console.log(response.data)
+                console.log(user)
         })
     }
 }
@@ -172,7 +173,7 @@ export const logout = () => {
 
 export const createDeck = (name, details) => {
     return dispatch => {
-        axios.post('http://localhost:8080/deck', {userId: store.getState().currentUser._id, deck: {name: name, details: details}})
+        axios.post('/deck', {userId: store.getState().currentUser._id, deck: {name: name, details: details}})
             .then(response => {
                 if (response) {
                     store.dispatch({
@@ -186,7 +187,7 @@ export const createDeck = (name, details) => {
 
 export const saveDeckToDB = (deck) => {
     return dispatch => {
-        axios.put('http://localhost:8080/user/'+ store.getState().currentUser._id, store.getState().currentUser)
+        axios.put('/user/'+ store.getState().currentUser._id, store.getState().currentUser)
             .then(response => {
                 if (response) {
                     store.dispatch({
