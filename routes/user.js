@@ -3,7 +3,7 @@ const express = require('express')
 const userRouter = express.Router()
 const User = require('../models/user.js')
 
-userRouter.route('/api/')
+userRouter.route('/')
     .get((req, res) => {
         User.find().exec((err, user) => {
             res.send(user)
@@ -24,14 +24,14 @@ userRouter.route('/api/')
             }        
         })
     })
-userRouter.route('/api/login')
+userRouter.route('/login')
     .post((req, res) => {
         User.findOne({username: req.body.username}, (err, user) => {
-            if (err) return res.send(err)
+            if (err) res.send(err)
             res.send(user)
         })
     })
-userRouter.route('/api/:id')
+userRouter.route('/:id')
     .get((req, res) => {
         User.findOne({_id: req.params.id}, (err, user) => {
             if (err) res.send(err)
