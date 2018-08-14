@@ -1,9 +1,7 @@
 import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import axios from "axios"
-import dotenv from "dotenv"
 const baseUrl = 'http://localhost:8080'
-const uri = process.env.MONGO_URI
 
 const initialState = {
     deck: [],
@@ -149,7 +147,7 @@ export const createUser = (username) => {
 
 export const login = (user) => {
     return dispatch => {
-        axios.post(baseUrl+'/api/user/login', {username: user})
+        axios.post('/api/user/login', {username: user})
             .then(response => {
                 if (response) {
                     store.dispatch({
