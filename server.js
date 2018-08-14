@@ -1,8 +1,7 @@
 const express = require('express')
 const cors = require('cors')
-require('dotenv')
+require('dotenv').config()
 const mongoose = require('mongoose')
-const { MongoClient } = require('mongodb')
 const path = require('path')
 
 const PORT = process.env.PORT || 8080

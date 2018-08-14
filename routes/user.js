@@ -28,7 +28,7 @@ userRouter.route('/login')
     .post((req, res) => {
         User.findOne({username: req.body.username}, (err, user) => {
             if (err) res.send(err)
-            res.send(user)
+            return res.send(user)
         })
     })
 userRouter.route('/:id')
