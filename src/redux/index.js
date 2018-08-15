@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import axios from "axios"
-import dotenv from "dotenv"
 const baseUrl = process.env.BASE_URL
 
 const initialState = {
