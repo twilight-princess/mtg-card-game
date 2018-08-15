@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import axios from "axios"
-const baseUrl = process.env.BASE_URL
+//const baseUrl = process.env.BASE_URL
 
 const initialState = {
     deck: [],
@@ -147,7 +147,7 @@ export const createUser = (username) => {
 
 export const login = (user) => {
     return dispatch => {
-        axios.post(baseUrl+'/api/user/login', {username: user})
+        axios.post('/api/user/login', {username: user})
             .then(response => {
                 if (response) {
                     store.dispatch({
