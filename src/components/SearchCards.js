@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getCard, addToDeck } from '../redux'
-// import '../styles/SearchCards.css'
-import Card from './Card'
 import User from './User'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 class SearchCards extends Component {

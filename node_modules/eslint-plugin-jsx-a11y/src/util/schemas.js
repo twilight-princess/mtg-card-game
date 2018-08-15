@@ -1,5 +1,3 @@
-import assign from 'object-assign';
-
 /**
  * JSON schema to accept an array of unique strings
  */
@@ -8,7 +6,6 @@ export const arraySchema = {
   items: {
     type: 'string',
   },
-  minItems: 1,
   uniqueItems: true,
   additionalItems: false,
 };
@@ -16,18 +13,21 @@ export const arraySchema = {
 /**
  * JSON schema to accept an array of unique strings from an enumerated list.
  */
-export const enumArraySchema = (enumeratedList = []) => assign({}, arraySchema, {
-  items: {
-    type: 'string',
-    enum: enumeratedList,
-  },
-});
+export const enumArraySchema = (enumeratedList = [], minItems = 0) =>
+  Object.assign({}, arraySchema, {
+    items: {
+      type: 'string',
+      enum: enumeratedList,
+    },
+    minItems,
+  });
 
 /**
  * Factory function to generate an object schema
  * with specified properties object
  */
-export const generateObjSchema = (properties = {}) => ({
+export const generateObjSchema = (properties = {}, required) => ({
   type: 'object',
   properties,
+  required,
 });

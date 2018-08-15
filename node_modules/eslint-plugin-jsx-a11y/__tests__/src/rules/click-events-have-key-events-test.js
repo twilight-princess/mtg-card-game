@@ -26,7 +26,7 @@ const expectedError = {
   type: 'JSXOpeningElement',
 };
 
-ruleTester.run('onclick-has-role', rule, {
+ruleTester.run('click-events-have-key-events', rule, {
   valid: [
     { code: '<div onClick={() => void 0} onKeyDown={foo}/>;' },
     { code: '<div onClick={() => void 0} onKeyUp={foo} />;' },
@@ -46,7 +46,6 @@ ruleTester.run('onclick-has-role', rule, {
     { code: '<option onClick={() => void 0} className="foo" />' },
     { code: '<select onClick={() => void 0} className="foo" />' },
     { code: '<textarea onClick={() => void 0} className="foo" />' },
-    { code: '<a tabIndex="0" onClick={() => void 0} />' },
     { code: '<a onClick={() => void 0} href="http://x.y.z" />' },
     { code: '<a onClick={() => void 0} href="http://x.y.z" tabIndex="0" />' },
     { code: '<input onClick={() => void 0} type="hidden" />;' },
@@ -70,5 +69,6 @@ ruleTester.run('onclick-has-role', rule, {
       errors: [expectedError],
     },
     { code: '<a onClick={() => void 0} />', errors: [expectedError] },
+    { code: '<a tabIndex="0" onClick={() => void 0} />', errors: [expectedError] },
   ].map(parserOptionsMapper),
 });

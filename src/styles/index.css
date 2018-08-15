@@ -15,7 +15,7 @@ body {
 }
 .beckground-img {
   /* content: ""; */
-  background-image: url('../../magicCard.jpg');
+  background-image: url('../magicCard.jpg');
   background-repeat: repeat;
   /* opacity: 0.5; */
   top: 0;

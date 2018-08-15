@@ -32,9 +32,9 @@ module.exports = {
     return {
       JSXAttribute: function JSXAttribute(attribute) {
         var name = (0, _jsxAstUtils.propName)(attribute);
-        var normalizedName = name ? name.toUpperCase() : '';
+        var normalizedName = name ? name.toLowerCase() : '';
 
-        if (normalizedName !== 'ROLE') {
+        if (normalizedName !== 'role') {
           return;
         }
 
@@ -54,13 +54,14 @@ module.exports = {
 
         validRoles.forEach(function (role) {
           var _roles$get = _ariaQuery.roles.get(role),
-              requiredProps = _roles$get.requiredProps;
+              requiredPropKeyValues = _roles$get.requiredProps;
+
+          var requiredProps = Object.keys(requiredPropKeyValues);
 
           if (requiredProps.length > 0) {
             var hasRequiredProps = requiredProps.every(function (prop) {
               return (0, _jsxAstUtils.getProp)(attribute.parent.attributes, prop);
             });
-
             if (hasRequiredProps === false) {
               context.report({
                 node: attribute,

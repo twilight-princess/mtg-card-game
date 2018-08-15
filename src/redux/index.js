@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import axios from "axios"
-const baseUrl = 'http://localhost:8080'
+import dotenv from "dotenv"
+const baseUrl = process.env.BASE_URL
 
 const initialState = {
     deck: [],
@@ -90,7 +91,7 @@ export const getCard = (...args) => {
     let url = "https://api.magicthegathering.io/v1/cards?random=true&pageSize=1"
     if (args) {
         args.map(arg => {
-            url += "&" + arg.name + "=" + arg.value
+            return url += "&" + arg.name + "=" + arg.value
         })
     }
     return dispatch => {
@@ -147,7 +148,7 @@ export const createUser = (username) => {
 
 export const login = (user) => {
     return dispatch => {
-        axios.post('/api/user/login', {username: user})
+        axios.post(baseUrl+'/api/user/login', {username: user})
             .then(response => {
                 if (response) {
                     store.dispatch({

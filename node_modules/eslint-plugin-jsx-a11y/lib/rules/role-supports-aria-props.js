@@ -50,15 +50,17 @@ module.exports = {
         // If there is no explicit or implicit role, then assume that the element
         // can handle the global set of aria-* properties.
         // This actually isn't true - should fix in future release.
-        if (typeof roleValue !== 'string' || _ariaQuery.roles.get(roleValue.toLowerCase()) === undefined) {
+        if (typeof roleValue !== 'string' || _ariaQuery.roles.get(roleValue) === undefined) {
           return;
         }
 
         // Make sure it has no aria-* properties defined outside of its property set.
-        var propertySet = _ariaQuery.roles.get(roleValue.toLowerCase()).props;
-        var invalidAriaPropsForRole = [].concat(_toConsumableArray(_ariaQuery.aria.keys())).map(function (attribute) {
-          return attribute.toLowerCase();
-        }).filter(function (attribute) {
+
+        var _roles$get = _ariaQuery.roles.get(roleValue),
+            propKeyValues = _roles$get.props;
+
+        var propertySet = Object.keys(propKeyValues);
+        var invalidAriaPropsForRole = [].concat(_toConsumableArray(_ariaQuery.aria.keys())).filter(function (attribute) {
           return propertySet.indexOf(attribute) === -1;
         });
 
@@ -68,9 +70,7 @@ module.exports = {
           }
 
           var name = (0, _jsxAstUtils.propName)(prop);
-          var normalizedName = name ? name.toLowerCase() : '';
-
-          if (invalidAriaPropsForRole.indexOf(normalizedName) > -1) {
+          if (invalidAriaPropsForRole.indexOf(name) > -1) {
             context.report({
               node: node,
               message: errorMessage(name, roleValue, type, isImplicit)

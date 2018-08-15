@@ -6,16 +6,14 @@ var _jsxAstUtils = require('jsx-ast-utils');
 
 var _schemas = require('../util/schemas');
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } } /**
-                                                                                                                                                                                                     * @fileoverview Enforce scope prop is only used on <th> elements.
-                                                                                                                                                                                                     * @author Ethan Cohen
-                                                                                                                                                                                                     */
+var errorMessage = 'The scope prop can only be used on <th> elements.'; /**
+                                                                         * @fileoverview Enforce scope prop is only used on <th> elements.
+                                                                         * @author Ethan Cohen
+                                                                         */
 
 // ----------------------------------------------------------------------------
 // Rule Definition
 // ----------------------------------------------------------------------------
-
-var errorMessage = 'The scope prop can only be used on <th> elements.';
 
 var schema = (0, _schemas.generateObjSchema)();
 
@@ -39,7 +37,7 @@ module.exports = {
 
         // Do not test higher level JSX components, as we do not know what
         // low-level DOM element this maps to.
-        if ([].concat(_toConsumableArray(_ariaQuery.dom.keys())).indexOf(tagName) === -1) {
+        if (!_ariaQuery.dom.has(tagName)) {
           return;
         } else if (tagName && tagName.toUpperCase() === 'TH') {
           return;

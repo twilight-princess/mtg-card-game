@@ -11,13 +11,12 @@ class Card extends Component {
 		return (
 			<div >
 			{(this.props.card.name) &&
-				(<div id="card" className="wrapper">
+				<div id="card" className="wrapper">
 					<h1>{this.props.card.name}</h1>
 					<h2>{this.props.card.colors.join(", ")}</h2>
 					<img src={this.props.card.image} alt={this.props.card.name} />
 					<p>{this.props.card.description}</p>
-				</div>) ||
-				(<h3 className="na">N/A</h3>)
+				</div>
 			}
 			</div>
 		)

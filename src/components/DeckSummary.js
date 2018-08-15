@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../styles/Deck.css'
 import { Link, withRouter } from 'react-router-dom'
-import Deck from './Deck'
 
 const mapStateToProps = state => {
     return { user: state.user, loggedIn: state.loggedIn }

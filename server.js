@@ -1,11 +1,11 @@
 const express = require('express')
 const cors = require('cors')
-require('dotenv').config()
 const mongoose = require('mongoose')
 const path = require('path')
 
-const PORT = process.env.PORT || 8080
-const MONGODB_URI = 'mongodb://localhost:27017/MTG'
+const PORT = process.env.PORT 
+const MONGODB_URI = process.env.MONGODB_URI
+require('dotenv').config()
 
 const userRouter = require('./routes/user.js')
 const deckRouter = require('./routes/deck.js')
@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 app.use('/api/user', userRouter)
 app.use('/api/deck', deckRouter)
 
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true})
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true})
     .then(db => console.log('connected to mongodb'))
     .catch(err => console.log(err))
 

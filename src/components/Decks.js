@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Deck from './Deck.js'
 import DeckSummary from './DeckSummary.js'
 import '../styles/Deck.css'
 import { Link, withRouter } from 'react-router-dom'

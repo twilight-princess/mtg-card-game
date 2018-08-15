@@ -14,10 +14,9 @@
     "react-responsive-navbar": "^1.0.11",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "0.9.5",
+    "react-scripts": "^1.1.4",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0",
-    "styled-components": "^3.3.3i"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {},
   "scripts": {

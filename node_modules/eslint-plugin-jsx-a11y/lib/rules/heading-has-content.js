@@ -4,9 +4,9 @@ var _jsxAstUtils = require('jsx-ast-utils');
 
 var _schemas = require('../util/schemas');
 
-var _isHiddenFromScreenReader = require('../util/isHiddenFromScreenReader');
+var _hasAccessibleChild = require('../util/hasAccessibleChild');
 
-var _isHiddenFromScreenReader2 = _interopRequireDefault(_isHiddenFromScreenReader);
+var _hasAccessibleChild2 = _interopRequireDefault(_hasAccessibleChild);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23,24 +23,7 @@ var headings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
 var schema = (0, _schemas.generateObjSchema)({ components: _schemas.arraySchema });
 
-var determineChildType = function determineChildType(child) {
-  switch (child.type) {
-    case 'Literal':
-      return Boolean(child.value);
-    case 'JSXElement':
-      return !(0, _isHiddenFromScreenReader2.default)((0, _jsxAstUtils.elementType)(child.openingElement), child.openingElement.attributes);
-    case 'JSXExpressionContainer':
-      if (child.expression.type === 'Identifier') {
-        return child.expression.name !== 'undefined';
-      }
-      return true;
-    default:
-      return false;
-  }
-};
-
 module.exports = {
-  determineChildType: determineChildType,
   meta: {
     docs: {},
     schema: [schema]
@@ -55,11 +38,7 @@ module.exports = {
         // Only check 'h*' elements and custom types.
         if (typeCheck.indexOf(nodeType) === -1) {
           return;
-        }
-
-        var isAccessible = node.parent.children.some(determineChildType) || (0, _jsxAstUtils.hasAnyProp)(node.attributes, ['dangerouslySetInnerHTML', 'children']);
-
-        if (isAccessible) {
+        } else if ((0, _hasAccessibleChild2.default)(node.parent)) {
           return;
         }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addToDeck, saveDeckToDB } from '../redux'
+import { saveDeckToDB } from '../redux'
 import '../styles/Deck.css'
 import { Link, withRouter } from 'react-router-dom'
 import Card from './Card'

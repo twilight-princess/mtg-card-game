@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { login, createUser } from '../redux'
 import { Redirect, withRouter } from 'react-router-dom'
-import SearchCards from './SearchCards.js'
 
 const mapStateToProps = (state) => {
   return { user: state.user, loggedIn: state.loggedIn }
@@ -29,7 +28,7 @@ class User extends Component {
   handleCreateUsername(e) {
     console.log(`Created user: ${this.state.username}`)
     e.preventDefault()
-    if(this.state.username == /\W?/) {
+    if(this.state.username === /\W?/) {
       return <p>Please only use letters, numbers, and underscores. No spaces or special characters. :)</p>
     } else {
       this.setState(
