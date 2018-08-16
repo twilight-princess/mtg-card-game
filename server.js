@@ -3,8 +3,8 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const path = require('path')
 
-const PORT = process.env.PORT 
-const MONGODB_URI = process.env.MONGODB_URI
+const PORT = process.env.PORT || 666 
+const MONGODB_URI = process.env.MONGODB_RED_URI || 'mongodb://heroku_38p7jbkn:52budlobrrk1hu9rq9qmdgqqjk@ds119702.mlab.com:19702/heroku_38p7jbkn'
 
 const userRouter = require('./routes/user.js')
 const deckRouter = require('./routes/deck.js')

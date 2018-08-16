@@ -68,8 +68,6 @@ class SearchCards extends Component {
     }
 }
 
-
-
 const mapDispatchToProps = dispatch => {
     return {
         getCard: search => {
