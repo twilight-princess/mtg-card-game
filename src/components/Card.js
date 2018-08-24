@@ -22,4 +22,4 @@ class Card extends Component {
 	}
 }
 
-export default withRouter(connect(prevState => prevState, { getCard, addToDeck })(Card))
+export default withRouter(connect(prevState => prevState)(Card))

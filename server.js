@@ -16,8 +16,8 @@ app.use(express.static(path.join(__dirname, "public", "build")))
 app.use(cors())
 app.use(bodyParser.json())
 // Routes
-app.use('/api/user', userRouter)
-app.use('/api/deck', deckRouter)
+app.use('/user', userRouter)
+app.use('/deck', deckRouter)
 
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true})
     .then(db => console.log('connected to mongodb'))
