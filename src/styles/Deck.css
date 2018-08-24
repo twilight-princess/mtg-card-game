@@ -7,12 +7,16 @@
 }
 .searchWithDeck {
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr auto;
   grid-template:
   "s c c"
   "d d d";
 }
 .searchDetails {
   grid-area: s;
+  grid-column: 1;
+  grid-row: 1;
   margin: 5px;
   padding: 10px;
   border-radius: 5px;
@@ -28,6 +32,8 @@
 }
 .cardDetails {
   grid-area: c;
+  grid-column: 2/4;
+  grid-row: 1;
   margin: 5px;
   padding: 10px;
   justify-content: center;
@@ -41,7 +47,9 @@
 .deckDetails {
   text-align: center;
   grid-area: d;
-  border: 1px solid #;
+  grid-column: 1/4;
+  grid-row: 2;
+  border: 1px solid black;
   margin: 5px;
   padding: 10px;
   border-radius: 5px;
