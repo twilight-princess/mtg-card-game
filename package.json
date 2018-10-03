@@ -33,5 +33,5 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "proxy": "http://localhost:666/"
+  "proxy": "http://localhost:6000/"
 }

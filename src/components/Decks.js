@@ -6,13 +6,13 @@ import { connect } from 'react-redux'
 import { createDeck } from '../redux'
 
 const mapStateToProps = (state) => {
-    return { currentUser: state.currentUser, loggedIn: state.loggedIn }
+    return { currentUser: state.currentUser, loggedIn: state.loggedIn, decks: state.decks }
   }
 
 class Decks extends Component {
     constructor(props) {
     super(props)
-    this.state = { loading: true, loggedIn: false, currentUser: ''}
+    this.state = { loading: true, loggedIn: false, currentUser: {decks: ''}, decks:''}
     this.handleCreateDeck = this.handleCreateDeck.bind(this)
     this.handleChange = this.handleChange.bind(this)
     }
@@ -30,7 +30,7 @@ class Decks extends Component {
     }
 
     render() {
-        if (this.props.loggedIn && this.props.currentUser.decks.length > 0) { 
+        if (this.props.loggedIn && !!this.props.currentUser.decks) { 
             return (
                 <div className="decks">
                     <h4>Your Saved Decks</h4>

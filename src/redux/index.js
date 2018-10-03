@@ -58,7 +58,7 @@ const reducer = (prevState = initialState, action) => {
             return {
                 ...prevState,
                 loggedIn: true,
-                currentUser: action.user,
+                currentUser: {...prevState.user, ...action.user},
                 loading: false 
             }
         case "LOGOUT":
@@ -133,7 +133,7 @@ export const addToDeck = (card, deckId) => {
 
 export const createUser = (username) => {
     return dispatch => {
-        axios.post('/api/user', {username: username})
+        axios.post('/user', {username: username})
             .then(response => {
                 if (response) {
                     store.dispatch({
@@ -147,7 +147,7 @@ export const createUser = (username) => {
 
 export const login = (user) => {
     return dispatch => {
-        axios.post('/api/user/login', {username: user})
+        axios.post('/user/login', {username: user})
             .then(response => {
                 if (response) {
                     store.dispatch({
@@ -173,7 +173,7 @@ export const logout = () => {
 
 export const createDeck = (name, details) => {
     return dispatch => {
-        axios.post('/api/deck', {userId: store.getState().currentUser._id, deck: {name: name, details: details}})
+        axios.post('/deck', {userId: store.getState().currentUser._id, deck: {name: name, details: details}})
             .then(response => {
                 if (response) {
                     store.dispatch({
@@ -187,7 +187,7 @@ export const createDeck = (name, details) => {
 
 export const saveDeckToDB = (deck) => {
     return dispatch => {
-        axios.put('/api/user/'+ store.getState().currentUser._id, store.getState().currentUser)
+        axios.put('/user/'+ store.getState().currentUser._id, store.getState().currentUser)
             .then(response => {
                 if (response) {
                     store.dispatch({

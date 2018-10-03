@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import '../styles/App.css'
+// import '../styles/App.css'
 import User from './User'
 import Decks from './Decks'
 

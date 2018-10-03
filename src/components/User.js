@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { login, createUser } from '../redux'
-import { Redirect, withRouter } from 'react-router-dom'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { login, createUser } from '../redux';
+import { Redirect, withRouter } from 'react-router-dom';
+import LoginBox from './LoginBox';
 
 const mapStateToProps = (state) => {
   return { user: state.user, loggedIn: state.loggedIn }
@@ -26,7 +27,6 @@ class User extends Component {
     this.setState(login(this.state.username))
   }
   handleCreateUsername(e) {
-    console.log(`Created user: ${this.state.username}`)
     e.preventDefault()
     if(this.state.username === /\W?/) {
       return <p>Please only use letters, numbers, and underscores. No spaces or special characters. :)</p>
@@ -35,6 +35,7 @@ class User extends Component {
         createUser(this.state.username)
       )
     }
+    console.log(`Created user: ${this.state.username}`)
   }
   render() {
     if (this.props.loggedIn === true) {
@@ -44,9 +45,7 @@ class User extends Component {
       <div className="user">
         {!this.props.loggedIn ?
         <form>
-          <input onChange={this.handleChange} value={this.username} name="username" type="text" />
-          <button onClick={this.handleLogin}>Login</button>
-          <button onClick={this.handleCreateUsername}>Create Username</button>
+          <LoginBox />
         </form> 
         : <button onClick={this.handleLogout}>Logout</button>
         }
