@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/LoginBox.css';
 
 class LoginBox extends Component {
   state = { loggedIN: false };

@@ -15,11 +15,11 @@ class Nav extends Component {
     // const displayName = this.props.currentUser.username.replace(/\b/).toUpperCase() + this.props.currentUser.username.replace(/\B/).toLowerCase()
     return (
           <ul>
-            <li><Link to="/">Home</Link></li>
+            <li><Link to="/"><b>Home</b></Link></li>
             {/* <li><Link to="/card">Search Cards</Link></li> */}
             <li></li>
-            <li><Link to="/decks">{this.props.currentUser.username}</Link></li>
-            <li>{this.props.loggedIn ? <a onClick={logout()}>Logout</a> : <Link to="/">Login</Link>}</li>
+            <li><Link to="/decks"><b>{this.props.currentUser.username}</b></Link></li>
+            <li>{this.props.loggedIn ? <a onClick={logout()}><b>Logout</b></a> : <Link to="/"><b>Login</b></Link>}</li>
           </ul>
     )
   }

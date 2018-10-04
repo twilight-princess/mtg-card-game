@@ -2,7 +2,7 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: #9792E3;
+    background-color: rgb(84, 126, 91);
     display: grid;
     height: 50px;
     margin: 5px;
@@ -17,14 +17,14 @@ li {
 li a {
     font-size: 20px;
     text-decoration: none;
-    color: #5A5766;
+    color: rgb(205, 203, 211);
     -webkit-text-stroke-width: .5px;
-    -webkit-text-stroke-color: #48435C;
+    -webkit-text-stroke-color: rgb(1, 1, 2);
     cursor: pointer;
 }
 li a:hover {
     text-decoration: none;
-    color: #9792E3;
+    color: rgb(1, 1, 2);
     -webkit-text-stroke-width: .5px;
-    -webkit-text-stroke-color: #5A5766;
+    -webkit-text-stroke-color: rgb(205, 203, 211));
 }
